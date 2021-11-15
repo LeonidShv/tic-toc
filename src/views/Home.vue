@@ -1,17 +1,19 @@
 <template>
   <div class="home">
     <h1>Home</h1>
+    <Stats :stats="{diggCount: 10, commentCount: 2}" />
     <button @click="fetchInfo">Fetch</button>
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
+import Stats from '@/components/stats.vue';
 
 export default {
   name: 'Home',
   components: {
-    // HelloWorld,
+    Stats,
   },
 
   created() {},
