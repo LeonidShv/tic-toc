@@ -171,6 +171,7 @@ export default {
     padding: 10px;
     border-radius: 50%;
     transition: background-color 0.3s;
+    cursor: pointer;
 
     &:hover {
       background-color: var(--color-hover-grey);
