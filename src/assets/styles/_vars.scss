@@ -1,8 +1,9 @@
 $colors: (
   'grey':      #1618230f,
   'hover-grey':#1618235f,
+  'darkGrey': #807e7e,
   'white':      #fff,
-  'black': #000
+  'black': #000,
 );
 
 @each $name, $color in $colors {
