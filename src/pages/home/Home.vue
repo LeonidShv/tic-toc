@@ -1,11 +1,21 @@
 <template>
   <div class="Home">
-    <div class="Home__post" v-for="i in 10" :key="i">
-      <PostHeader />
+    <div
+      class="Home__post"
+      v-for="{id, authorMeta, text, hashtags, diggCount, commentCount, videoUrl} in trendingFeed"
+      :key="id"
+    >
+      <PostHeader
+        :user="authorMeta"
+        :description="{hashtags, text}"
+      />
 
       <div class="Home__video">
-        <Stats :stats="{diggCount: 10, commentCount: 2}" class="Home__stats" />
-        <VideoPlayer />
+        <Stats
+          :stats="{diggCount, commentCount}"
+          class="Home__stats"
+        />
+        <VideoPlayer :videoUrl="videoUrl" />
       </div>
     </div>
 
@@ -14,7 +24,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 import Stats from '@/components/vStats.vue';
 import PostHeader from '@/pages/home/vPostHeader.vue';
 import VideoPlayer from '@/components/vVideoPlayer.vue';
@@ -28,6 +38,12 @@ export default {
   },
 
   created() {},
+
+  computed: {
+    ...mapState('trending', [
+      'trendingFeed',
+    ]),
+  },
 
   methods: {
     ...mapActions('trending', [

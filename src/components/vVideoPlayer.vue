@@ -6,10 +6,11 @@
     height="240"
     controls
     class="VideoPlayer"
-    autoplay
     muted
     ref="videoPlayer"
+    loop
   >
+  <!-- autoplay -->
     <source :src="videoUrl" />
     Your browser does not support the video tag.
   </video>
@@ -45,5 +46,6 @@ export default {
 .VideoPlayer {
   width: 250px;
   height: 450px;
+  border-radius: 10px;
 }
 </style>
