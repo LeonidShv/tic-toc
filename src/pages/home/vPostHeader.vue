@@ -12,16 +12,16 @@
       <h2 class="Header__title">
         <span class="Header__name">{{ user.name }}</span>
         <!-- name: request, like ID -->
-        <!-- <span class="Header__approve" :v-show="true">&#10004;</span> -->
+        <span class="Header__approve" :v-if="user.verified">&#10004;</span>
         <span class="Header__nickname">{{ user.nickname }}</span>
       </h2>
 
       <p class="Header__text">
-        {{ user.text }}
+        {{ description.text }}
       </p>
       <span
         class="Header__hash"
-        v-for="{ id, name } in user.hashtags"
+        v-for="{ id, name } in description.hashtags"
         :key="id"
       >
         {{ name + ' ' }}
@@ -36,27 +36,27 @@ export default {
     user: {
       type: Object,
       default: () => ({
-        avatar: 'https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/30107337091e90a33da10d6ce1815bb1~c5_100x100.jpeg?x-expires=1637100000&x-signature=6ARPcY1pnTRtBDnPftqbhIvsCTs%3D',
-        name: 'LeoShv',
-        nickname: 'Leo Shvab',
-        text: 'Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem',
-        hashtags: [
-          { id: 1, name: '#apple' },
-          { id: 2, name: '#pineapple' },
-          { id: 11, name: '#apple' },
-          { id: 22, name: '#pineapple' },
-          { id: 13, name: '#apple' },
-          { id: 24, name: '#pineapple' },
-          { id: 15, name: '#apple' },
-          { id: 26, name: '#pineapple' },
-          { id: 28, name: '#pineapple' },
-        ],
+        avatar: '',
+        name: '',
+        nickname: '',
+        verified: false,
+      }),
+    },
+    description: {
+      type: Object,
+      default: () => ({
+        text: '',
+        hashtags: [],
       }),
     },
     rowDirection: {
       type: Boolean,
       default: false,
     },
+  },
+
+  created() {
+    console.log(this.user);
   },
 };
 </script>
