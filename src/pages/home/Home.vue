@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <h1>Home</h1>
+    <PostHeader />
     <Stats :stats="{diggCount: 10, commentCount: 2}" />
     <button @click="fetchInfo">Fetch</button>
   </div>
@@ -8,12 +9,14 @@
 
 <script>
 import { mapActions } from 'vuex';
-import Stats from '@/components/stats.vue';
+import Stats from '@/components/vStats.vue';
+import PostHeader from '@/pages/home/vPostHeader.vue';
 
 export default {
   name: 'Home',
   components: {
     Stats,
+    PostHeader,
   },
 
   created() {},
