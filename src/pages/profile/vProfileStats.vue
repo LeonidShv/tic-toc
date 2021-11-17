@@ -66,7 +66,7 @@ export default {
 <style scoped lang="scss">
 .Stats {
   display: flex;
-  margin-top: 20px;
+  margin-top: 30px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--color-hover-grey);
 
@@ -78,6 +78,10 @@ export default {
     &-bold {
       font-weight: bold;
       font-size: 1.1em;
+    }
+
+    @media (max-width: 600px) {
+      font-size: 0.9em;
     }
   }
 }

@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import api from '@/api';
 import staticUserFeed from '@/assets/userFeed.json';
+import returnAndSaveInLocalStor from '@/helper/returnAndSaveInLocalStor';
 
 const _state = {
   userInfo: {},
@@ -35,18 +36,9 @@ export default {
 
     async getUserFeed({ dispatch }, userName) {
       let data = [];
+      // I have only 100 free requests, returnAndSaveInLocalStor can help with this problem
+      data = await returnAndSaveInLocalStor(`userFeed_${userName}`, api.user.getFeed, userName);
 
-      // I have only 100 free requests, localStorage can solve this problem
-
-      if (localStorage.getItem(`userFeed_${userName}`)) {
-        data = JSON.parse(localStorage.getItem(`userFeed_${userName}`));
-      } else {
-        const response = await api.user.getFeed(userName);
-        data = response.data;
-
-        localStorage.setItem(`userFeed_${userName}`, JSON.stringify(data));
-      }
-      console.log('user feed', data);
       dispatch('setUserFeed', data);
     },
 
@@ -56,17 +48,9 @@ export default {
 
     async getUserInfo({ dispatch }, userName) {
       let data = [];
+      // I have only 100 free requests, returnAndSaveInLocalStor can help with this problem
+      data = await returnAndSaveInLocalStor(`userInfo_${userName}`, api.user.getInfo, userName);
 
-      // I have only 100 free requests, localStorage can solve this problem
-      if (localStorage.getItem(`userInfo_${userName}`)) {
-        data = JSON.parse(localStorage.getItem(`userInfo_${userName}`));
-      } else {
-        const response = await api.user.getInfo(userName);
-        data = response.data;
-
-        localStorage.setItem(`userInfo_${userName}`, JSON.stringify(data));
-      }
-      console.log('user info', data);
       dispatch('setUserInfo', data);
     },
   },

@@ -1,11 +1,16 @@
 <template>
-  <div class="Home">
+  <DefaultLayaout>
     <div
       class="Home__post"
-      v-for="{id, authorMeta, text, hashtags, diggCount, commentCount, videoUrl} in trendingFeed"
+      v-for="{
+        id, authorMeta, text, hashtags, diggCount, commentCount, videoUrl
+      } in trendingFeed || []"
       :key="id"
     >
-    <router-link :to="`/${authorMeta.name}`">
+    <router-link
+      class="Home__postLink"
+      :to="`/${authorMeta.name}`"
+    >
       <PostHeader
         :user="authorMeta"
         :description="{hashtags, text}"
@@ -22,7 +27,7 @@
     </div>
 
     <button @click="fetchInfo">Fetch</button>
-  </div>
+  </DefaultLayaout>
 </template>
 
 <script>
@@ -30,6 +35,7 @@ import { mapActions, mapState } from 'vuex';
 import Stats from '@/components/vStats.vue';
 import PostHeader from '@/pages/home/vPostHeader.vue';
 import VideoPlayer from '@/components/vVideoPlayer.vue';
+import DefaultLayaout from '@/layout/DefaultLayaout.vue';
 
 export default {
   name: 'Home',
@@ -37,6 +43,7 @@ export default {
     Stats,
     PostHeader,
     VideoPlayer,
+    DefaultLayaout,
   },
 
   created() {
@@ -70,9 +77,6 @@ export default {
 
 <style scoped lang="scss">
 .Home {
-  max-width: 700px;
-  margin: auto;
-
   &__video {
     position: relative;
     min-height: 300px;

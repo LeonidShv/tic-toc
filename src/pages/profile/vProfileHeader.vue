@@ -48,6 +48,11 @@ export default {
   &__wrapImg {
     width: 25%;
     text-align: left;
+
+    @media (max-width: 600px) {
+      margin-right: 30px;
+      width: 30%;
+    }
   }
 
   &__img {
@@ -60,6 +65,10 @@ export default {
     margin-left: 10px;
     width: 75%;
     text-align: left;
+
+    @media (max-width: 600px) {
+      width: 70%;
+    }
   }
 
   &__name {
