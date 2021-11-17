@@ -70,8 +70,9 @@ export default {
 
 <style scoped lang="scss">
 .Home {
-  max-width: 700px;
-  margin: auto;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px;
 
   &__video {
     position: relative;

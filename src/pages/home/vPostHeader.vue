@@ -81,6 +81,10 @@ export default {
     margin-left: 10px;
     width: 85%;
     text-align: left;
+
+    @media (max-width: 600px) {
+      font-size: 0.9em;
+    }
   }
 
   &__name {

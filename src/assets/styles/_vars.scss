@@ -6,6 +6,14 @@ $colors: (
   'black': #000,
 );
 
+$breakPoints: (
+  'xl': '1920px',
+  'lg': '1200px',
+  'md': '992px',
+  'sm': '600px',
+  'xs': '400px'
+);
+
 @each $name, $color in $colors {
   :root {
     --color-#{$name}: #{$color};
