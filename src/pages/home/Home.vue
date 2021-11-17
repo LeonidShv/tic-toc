@@ -5,10 +5,12 @@
       v-for="{id, authorMeta, text, hashtags, diggCount, commentCount, videoUrl} in trendingFeed"
       :key="id"
     >
+    <router-link :to="`/${authorMeta.name}`">
       <PostHeader
         :user="authorMeta"
         :description="{hashtags, text}"
       />
+    </router-link>
 
       <div class="Home__video">
         <Stats
@@ -37,7 +39,9 @@ export default {
     VideoPlayer,
   },
 
-  created() {},
+  created() {
+    this.getTrendingFeed();
+  },
 
   computed: {
     ...mapState('trending', [
@@ -51,13 +55,13 @@ export default {
     ]),
 
     ...mapActions('user', [
-      'getUserFeed',
       'getUserInfo',
+      'getStaticUserFeed',
     ]),
 
     fetchInfo() {
       this.getTrendingFeed();
-      this.getUserFeed('dave.xp');
+      this.getStaticUserFeed();
       this.getUserInfo('dave.xp');
     },
   },

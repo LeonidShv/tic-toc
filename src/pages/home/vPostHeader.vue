@@ -12,8 +12,13 @@
       <h2 class="Header__title">
         <span class="Header__name">{{ user.name }}</span>
         <!-- name: request, like ID -->
-        <span class="Header__approve" :v-if="user.verified">&#10004;</span>
-        <span class="Header__nickname">{{ user.nickname }}</span>
+        <span
+          class="Header__approve"
+          :v-if="user.verified"
+        >
+            &#10004;
+        </span>
+        <span class="Header__nickname">{{ user.nickName }}</span>
       </h2>
 
       <p class="Header__text">
@@ -38,7 +43,7 @@ export default {
       default: () => ({
         avatar: '',
         name: '',
-        nickname: '',
+        nickName: '',
         verified: false,
       }),
     },
@@ -54,10 +59,6 @@ export default {
       default: false,
     },
   },
-
-  created() {
-    console.log(this.user);
-  },
 };
 </script>
 
@@ -67,11 +68,13 @@ export default {
 
   &__wrapImg {
     width: 15%;
+    text-align: left;
   }
 
   &__img {
     width: 50px;
     height: 50px;
+    border-radius: 50%;
   }
 
   &__info {
@@ -96,7 +99,7 @@ export default {
 
   &__hash {
     font-weight: bold;
-    color: var(--color-darkGrey)
+    color: var(--color-darkGrey);
   }
 
   &__text {
