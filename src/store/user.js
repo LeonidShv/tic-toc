@@ -1,8 +1,9 @@
 /* eslint-disable no-underscore-dangle */
 import api from '@/api';
+import staticUserFeed from '@/assets/userFeed.json';
 
 const _state = {
-  userInfo: [],
+  userInfo: {},
   userFeed: [],
 };
 
@@ -49,11 +50,14 @@ export default {
       dispatch('setUserFeed', data);
     },
 
+    getStaticUserFeed({ dispatch }) {
+      dispatch('setUserFeed', staticUserFeed.itemList);
+    },
+
     async getUserInfo({ dispatch }, userName) {
       let data = [];
 
       // I have only 100 free requests, localStorage can solve this problem
-
       if (localStorage.getItem(`userInfo_${userName}`)) {
         data = JSON.parse(localStorage.getItem(`userInfo_${userName}`));
       } else {
