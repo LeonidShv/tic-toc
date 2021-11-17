@@ -1,11 +1,11 @@
 <template>
-  <div class="Profile">
+  <DefaultLayaout>
     <ProfileHeader :user="this.userInfo.user" />
     <ProfileStats :stats="this.userInfo.stats" />
 
     <div class="Profile__listPosts">
       <div
-        v-for="{id, video, stats} in userFeed"
+        v-for="{id, video, stats} in userFeed || []"
         :key="id"
         class="Profile__post"
       >
@@ -20,7 +20,7 @@
         <VideoPlayer :videoUrl="video.cover" />
       </div>
     </div>
-  </div>
+  </DefaultLayaout>
 </template>
 
 <script>
@@ -29,6 +29,7 @@ import ProfileHeader from '@/pages/profile/vProfileHeader.vue';
 import ProfileStats from '@/pages/profile/vProfileStats.vue';
 import VideoPlayer from '@/components/vVideoPlayer.vue';
 import Stats from '@/components/vStats.vue';
+import DefaultLayaout from '@/layout/DefaultLayaout.vue';
 
 export default {
   components: {
@@ -36,12 +37,12 @@ export default {
     ProfileStats,
     VideoPlayer,
     Stats,
+    DefaultLayaout,
   },
 
   async created() {
     await this.getUserInfo(this.nameIndentificator);
     await this.getStaticUserFeed();
-    console.log('userFeed: ', this.userFeed);
   },
 
   computed: {
@@ -66,10 +67,6 @@ export default {
 
 <style scoped lang="scss">
 .Profile {
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 20px;
-
   &__listPosts {
     display: flex;
     justify-content: space-between;

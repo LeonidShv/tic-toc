@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import api from '@/api';
+import returnAndSaveInLocalStor from '@/helper/returnAndSaveInLocalStor';
 
 const _state = {
   trendingFeed: [],
@@ -25,18 +26,9 @@ export default {
 
     async getTrendingFeed({ dispatch }) {
       let data = [];
+      // I have only 100 free requests, returnAndSaveInLocalStor can help with this problem
+      data = await returnAndSaveInLocalStor('trendingFeed', api.trending.get);
 
-      // I have only 100 free requests, localStorage can solve this problem
-
-      if (localStorage.getItem('trendingFeed')) {
-        data = JSON.parse(localStorage.getItem('trendingFeed'));
-      } else {
-        const response = await api.trending.get();
-        data = response.data;
-
-        localStorage.setItem('trendingFeed', JSON.stringify(data));
-      }
-      console.log('main tranding', data);
       dispatch('setTrendingFeed', data);
     },
   },

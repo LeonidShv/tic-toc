@@ -26,7 +26,7 @@
       </p>
       <span
         class="Header__hash"
-        v-for="{ id, name } in description.hashtags"
+        v-for="{ id, name } in description.hashtags || []"
         :key="id"
       >
         {{ name + ' ' }}
@@ -108,6 +108,10 @@ export default {
 
   &__text {
     margin: 12px 0;
+  }
+
+  &:hover {
+    background-color: var(--color-light-grey);
   }
 }
 </style>
