@@ -5,6 +5,7 @@ I save data from the server to the local storage to save traffic, I have only 10
 
 if suddenly the data stops being displayed, you need to connect another key, in src / constants / index.js
 
+не доделал header для axios запросов, переменные для медиа запроссов ну и в целом есть еще над чем по работать : )
 
 Детально про сторінки:
 ● В Стрічці новин потрібно відобразити останні 30 постів. Пост містить в собі:
